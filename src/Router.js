@@ -15,22 +15,20 @@ const Genres = loadable(() => import("./pages/private/pages/Genres"));
 // General
 const NotFound = loadable(() => import("./NotFound"));
 const Router = () => (
-  <>
-    <Routes>
-      <Route path="*" element={<NotFound />} />
-      <Route path="/" element={<PublicLayout />}>
-        <Route index element={<Home />} />
-        <Route path="details" element={<Details />} />
-      </Route>
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="users" element={<Users />} />
-        <Route path="tags" element={<Tags />} />
-        <Route path="genres" element={<Genres />} />
-        <Route path="notfound" element={<NotFound />} />
-      </Route>
-    </Routes>
-  </>
+  <Routes>
+    <Route path="*" element={<NotFound />} />
+    <Route path="/" element={<PublicLayout />}>
+      <Route index element={<Home />} />
+      <Route path="details" element={<Details />} />
+    </Route>
+    <Route path="/admin" element={<AdminLayout />}>
+      <Route index element={<Dashboard />} />
+      <Route path="users" element={<Users />} />
+      <Route path="tags" element={<Tags />} />
+      <Route path="genres" element={<Genres />} />
+      <Route path="notfound" element={<NotFound />} />
+    </Route>
+  </Routes>
 );
 
 export default Router;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 const Public = () => (
-    <>
+  <>
     <nav style={{ margin: 10 }}>
       <Link to="/" style={{ padding: 5 }}>
         <Button variant="primary">Home</Button>
@@ -15,8 +15,8 @@ const Public = () => (
         <Button variant="primary">Not found</Button>
       </Link>
     </nav>
-        <Outlet />
-    </>
+    <Outlet />
+  </>
 );
 
 export default Public;

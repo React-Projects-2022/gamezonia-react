@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import  { SHOP_PRODUCT_FRAGMENT } from './../fragment/shop-product';
+import { SHOP_PRODUCT_FRAGMENT } from "./../fragment/shop-product";
 export const PRINCIPAL_CHARACTERS_VOTES = gql`
   query PrincipalCharsVotes {
     characters {
@@ -23,20 +23,12 @@ export const HOME_PAGE = gql`
         ...ShopProductObject
       }
     }
-    pc: shopProductsPlatforms(
-        itemsPage: 4
-      platform: ["4"]
-      random: true
-    ) {
+    pc: shopProductsPlatforms(itemsPage: 4, platform: ["4"], random: true) {
       shopProducts {
         ...ShopProductObject
       }
     }
-    ps4: shopProductsPlatforms(
-      itemsPage: 4
-      platform: ["18"]
-      random: true
-    ) {
+    ps4: shopProductsPlatforms(itemsPage: 4, platform: ["18"], random: true) {
       shopProducts {
         ...ShopProductObject
       }
