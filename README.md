@@ -21,3 +21,8 @@ Execute project code testing
 npm run test
 ```
 
+## Interesting URLs
+
+* [Apollo GraphQL](https://www.apollographql.com/docs/react/get-started/)
+(Need install **subscriptions-transport-ws** dependencies)
+
