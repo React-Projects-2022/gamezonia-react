@@ -12,19 +12,19 @@ const Home = () => {
         <h1>Home</h1>
         <h2>Carousel</h2>
         {(!loading && !error) ? data.carousel.shopProducts.map((item) => (
-            <p kye={item.id}>{item.product.name}</p>
+            <p key={item.id}>{item.product.name}</p>
         )): <p>No data</p>}
         <h2>PC</h2>
         {(!loading && !error) ? data.pc.shopProducts.map((item) => (
-            <p kye={item.id}>{item.product.name}</p>
+            <p key={item.id}>{item.product.name}</p>
         )): <p>No data</p>}
         <h2>Playstation 4</h2>
         {(!loading && !error) ? data.ps4.shopProducts.map((item) => (
-            <p kye={item.id}>{item.product.name}</p>
+            <p key={item.id}>{item.product.name}</p>
         )): <p>No data</p>}
         <h2>35 € o menos</h2>
         {(!loading && !error) ? data.topPrice35.shopProducts.map((item) => (
-            <p kye={item.id}>{item.product.name}</p>
+            <p key={item.id}>{item.product.name}</p>
         )): <p>No data</p>}
       
       
