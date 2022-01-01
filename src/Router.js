@@ -7,6 +7,7 @@ const AdminLayout = loadable(() => import("./pages/private/Layout"));
 // Public
 const Home = loadable(() => import("./pages/public/Home"));
 const Details = loadable(() => import("./pages/public/Details"));
+const Login = loadable(() => import("./pages/public/forms/Login"));
 // Private
 const Dashboard = loadable(() => import("./pages/private/pages/Dashboard"));
 const Users = loadable(() => import("./pages/private/pages/Users"));
@@ -20,6 +21,7 @@ const Router = () => (
     <Route path="/" element={<PublicLayout />}>
       <Route index element={<Home />} />
       <Route path="details" element={<Details />} />
+      <Route path="login" element={<Login />} />
     </Route>
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Dashboard />} />

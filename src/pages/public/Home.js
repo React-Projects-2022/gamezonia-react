@@ -7,7 +7,7 @@ const Home = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <p>Error :(</p>;
 
-    document.title = 'Gamezonia - Home';
+  document.title = "Gamezonia - Home";
   return (
     <>
       <h1>Home</h1>

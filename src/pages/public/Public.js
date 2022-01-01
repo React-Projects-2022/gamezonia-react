@@ -8,6 +8,12 @@ const Public = () => (
       <Link to="/" style={{ padding: 5 }}>
         <Button variant="primary">Home</Button>
       </Link>
+      <Link to="/login" style={{ padding: 5 }}>
+        <Button variant="primary">Login</Button>
+      </Link>
+      <Link to="/details" style={{ padding: 5 }}>
+        <Button variant="primary">Details</Button>
+      </Link>
       <Link to="/admin" style={{ padding: 5 }}>
         <Button variant="primary">Admin</Button>
       </Link>

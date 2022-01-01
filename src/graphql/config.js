@@ -53,6 +53,8 @@ export class GraphQLConfig {
     this.#client = new ApolloClient({
       link: this.#link,
       cache: new InMemoryCache(),
+      name: 'Gamezonia',
+      version: '1.0'
     });
   }
 

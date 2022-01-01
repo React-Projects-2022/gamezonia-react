@@ -8,8 +8,7 @@ import "./index.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 const graphQLConfig = new GraphQLConfig(
-  "https://gamezonia-api.herokuapp.com/graphql",
-  "wss://gamezonia-api.herokuapp.com/graphql"
+  "https://gamezonia-api.herokuapp.com/graphql"
 );
 ReactDOM.render(
   <ApolloProvider client={graphQLConfig.getClient()}>
