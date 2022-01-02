@@ -1,44 +1,51 @@
-import { useState } from "react";
-import { LoginData } from "../../../components/LoginData";
 import { useForm } from "react-hook-form";
 import "./forms.css";
+import { REGISTER_USER } from "../../../graphql/operations/mutation/user";
+import { useMutation } from "@apollo/client";
+import { useState } from "react";
 const Register = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
-  const [registerData, setRegisterData] = useState({
-    email: "",
-    password: "",
-    name: "",
-    lastname: "",
+  const [result, setResult] = useState({});
+
+  const [registerUser] = useMutation(REGISTER_USER, {
+    update: (__, mutationResult) => {
+      const { register } = mutationResult.data;
+      setResult(register);
+
+    },
   });
 
-  const defaultValue = "user@gamezonia.com";
+  console.log(result);
 
   const onSubmit = (data) => {
-    setRegisterData({ email: data.email, password: data.password });
+    registerUser({
+      variables: {
+        user: {
+          email: data.email,
+          password: data.password,
+          name: data.name,
+          lastname: data.lastname,
+          birthday: data.birthday,
+        },
+        include: true,
+      },
+    });
   };
 
   return (
     <>
       <h1>Register</h1>
-      {registerData.email !== "" ? (
-        <LoginData
-          email={registerData.email}
-          password={registerData.password}
-        />
-      ) : (
-        <p>Haz click para iniciar sesión</p>
-      )}
+      <p>{result.status}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="name">First Name</label>
         <input
           placeholder="Input your name"
-          {...register("firstName", {
+          {...register("name", {
             required: "This field is a required",
             minLength: {
               value: 2,
@@ -46,12 +53,12 @@ const Register = () => {
             },
           })}
         />
-        {errors.firstName && <p>{errors.firstName.message}</p>}
+        {errors.name && <p>{errors.name.message}</p>}
 
-        <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastname">Last Name</label>
         <input
           placeholder="Input your lastname"
-          {...register("lastName", {
+          {...register("lastname", {
             required: "This field is required",
             minLength: {
               value: 2,
@@ -59,15 +66,12 @@ const Register = () => {
             },
           })}
         />
-        {errors.lastName && <p>{errors.lastName.message}</p>}
+        {errors.lastname && <p>{errors.lastNname.message}</p>}
         <label htmlFor="birthday">Birthday</label>
         <input
           type="date"
           id="start"
-          name="trip-start"
-          value="2018-07-22"
-          min="2018-01-01"
-          max="2018-12-31"
+          min="1900-01-01"
           {...register("birthday", {})}
         ></input>
         <label htmlFor="email">Email</label>

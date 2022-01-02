@@ -5,8 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import Router from "./Router";
 import { GraphQLConfig } from "./graphql/config";
 import "./index.css";
-
 import "bootstrap/dist/css/bootstrap.min.css";
+
 const graphQLConfig = new GraphQLConfig(
   "https://gamezonia-api.herokuapp.com/graphql"
 );
