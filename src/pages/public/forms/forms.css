@@ -1,0 +1,8 @@
+.validation {
+  color: #bf1650;
+}
+
+.validation::before {
+  display: inline;
+  content: "⚠ ";
+}
