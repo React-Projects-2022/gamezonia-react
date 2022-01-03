@@ -26,3 +26,5 @@ npm run test
 * [Apollo GraphQL](https://www.apollographql.com/docs/react/get-started/)
 (Need install **subscriptions-transport-ws** dependencies)
 
+* [Route Params](https://www.codingdeft.com/posts/react-get-query-and-url-parameters/#reading-url-parameters)
+

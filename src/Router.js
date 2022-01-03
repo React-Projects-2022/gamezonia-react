@@ -22,7 +22,7 @@ const Router = () => (
     <Route path="*" element={<NotFound />} />
     <Route path="/" element={<PublicLayout />}>
       <Route index element={<Home />} />
-      <Route path="details" element={<Details />} />
+      <Route path="details/:id" element={<Details />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
     </Route>

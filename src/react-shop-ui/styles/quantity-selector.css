@@ -1,17 +1,26 @@
 div {
-    margin-bottom: 5px;
-  }
-  .quantity {
-    width: 20%;
-    margin-bottom: 5px;
-  }
-  input[type="text"]:disabled {
-    color: black;
-    width: 60px;
-  }
-  .qty-btn {
-    border-radius: 20px;
-    padding-top: 3px;
-    /* top - right - bottom - left => sentido de las agujas del reloj*/
-    margin: -2px 3px 2px 3px;
-  }
+  margin-bottom: 5px;
+}
+.quantity {
+  margin-bottom: 5px;
+  width: 20%;
+}
+input[type="text"]:disabled {
+  color: black;
+  width: 60px;
+}
+.qty-btn {
+  border-radius: 10px;
+  color: white;
+  font-size: larger;
+  margin: -2px 3px 2px 3px;
+  padding-top: 3px;
+}
+
+.btn-plus {
+  background-color: #4dbf1e;
+}
+
+.btn-minus {
+  background-color: #dc3545;
+}
