@@ -1,3 +1,4 @@
+@import url("root.css");
 div {
   margin-bottom: 5px;
 }
@@ -18,9 +19,9 @@ input[type="text"]:disabled {
 }
 
 .btn-plus {
-  background-color: #4dbf1e;
+  background-color: var(--btn-positive-action-bg);
 }
 
 .btn-minus {
-  background-color: #dc3545;
+  background-color: var(--btn-negative-action-bg);
 }
