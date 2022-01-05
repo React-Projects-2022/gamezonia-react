@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 import "./../styles/rating.css";
 
 export const Rating = ({ max, ratingItem }) => {
@@ -27,4 +29,9 @@ export const Rating = ({ max, ratingItem }) => {
       {ratingItem.value} ({ratingItem.count})
     </div>
   );
+};
+
+Rating.propTypes = {
+  max: PropTypes.number.isRequired,
+  ratingItem: PropTypes.object.isRequired,
 };

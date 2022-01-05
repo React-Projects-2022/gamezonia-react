@@ -1,14 +1,10 @@
-import { navigateTo } from "../../helpers/navigate";
 import "./../styles/product-item.css";
 import { Rating } from "./Rating";
-export const ProducItem = ({ item }) => {
-  // https://bbbootstrap.com/snippets/product-card-template-hover-effect-and-animation-23224168
-  console.log(item);
-  const productItem = item;
+import PropTypes from "prop-types";
 
-  const showDetails = () => {
-    console.log(productItem);
-  };
+export const ProducItem = ({ item, showDetails, addCart }) => {
+  // https://bbbootstrap.com/snippets/product-card-template-hover-effect-and-animation-23224168
+
   return (
     <>
       {item ? (
@@ -18,37 +14,31 @@ export const ProducItem = ({ item }) => {
           </div>
           <div className="top-div">
             <div className="border">
-              <img src={productItem.product.img} alt="" />
+              <img src={item.product.img} alt="" />
             </div>
-            <span>{productItem.price} €</span>
+            <span>{item.price} €</span>
           </div>
           <div className="bottom-div">
-            <h5 className="truncate-one-line">{productItem.product.name}</h5>
-            <p>
-              {productItem.product.description
-                ? productItem.product.description
-                : ""}
-            </p>
+            <h5 className="truncate-one-line">{item.product.name}</h5>
+            <p>{item.product.description ? item.product.description : ""}</p>
             <Rating
               max={5}
               ratingItem={{
-                value: productItem.product.rating.value,
-                count: productItem.product.rating.count,
+                value: item.product.rating.value,
+                count: item.product.rating.count,
               }}
             />
           </div>
           <div className="last-section text-center">
             <div className="buttons">
               <button
-                onClick={() => {
-                  navigateTo('details', productItem.id);
-                }}
+                onClick={() => showDetails(item.id)}
                 title="Go to game more details"
               >
                 <i className="fas fa-info-circle"></i>
               </button>
               &nbsp;
-              <button onClick={() => console.log("Add to cart")} title="Add to cart">
+              <button onClick={() => addCart(item.id)} title="Add to cart">
                 <i className="fas fa-cart-plus"></i>
               </button>
             </div>
@@ -59,4 +49,10 @@ export const ProducItem = ({ item }) => {
       )}
     </>
   );
+};
+
+ProducItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  showDetails: PropTypes.func.isRequired,
+  addCart: PropTypes.func.isRequired,
 };

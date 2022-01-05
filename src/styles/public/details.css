@@ -1,0 +1,30 @@
+.game-details {
+  margin-top: 90px;
+}
+.mini {
+  margin-bottom: 10px;
+}
+
+/*Responsive*/
+
+@media (max-width: 600px) {
+  #screens-section {
+    display: none;
+  }
+}
+.other-interest-games {
+    margin-top: 0px;
+}
+.main-img,
+.more-games {
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+/*More games - Random Items*/
+.more-games {
+  max-height: 105px;
+}

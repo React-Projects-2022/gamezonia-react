@@ -14,7 +14,7 @@ export const QuantitySelector = ({ stock, updateValue }) => {
       increment();
     }
   };
-  
+
   useEffect(() => {
     updateValue(counter);
   }, [updateValue, counter]);

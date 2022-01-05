@@ -1,11 +1,14 @@
 import { useQuery } from "@apollo/client";
 import Loading from "../../components/core/Loading";
 import { HOME_PAGE } from "../../graphql/operations/query/home-page";
+import { navigateTo } from "../../helpers/navigate";
 import { ProducItem } from "../../react-shop-ui";
 const Home = () => {
   const { loading, error, data } = useQuery(HOME_PAGE);
 
   document.title = "Gamezonia - Home";
+  const showDetails = (params) => navigateTo('details', params);
+  const addCart = (itemId) => console.log(`Add to cart one unit: ${itemId} product`);
   return (
     <>
       {loading && <Loading />}
@@ -20,7 +23,7 @@ const Home = () => {
           <div className="row row-cols-1 row-cols-md-4 g-4">
             {data.pc.shopProducts.map((item) => (
               <div key={item.id} className="col">
-                <ProducItem item={item} />
+                <ProducItem item={item} showDetails={showDetails} addCart={addCart } />
               </div>
             ))}
           </div>
@@ -30,7 +33,7 @@ const Home = () => {
           <div className="row row-cols-1 row-cols-md-4 g-4">
             {data.ps4.shopProducts.map((item) => (
               <div key={item.id} className="col">
-                <ProducItem item={item} />
+                <ProducItem item={item} showDetails={showDetails} addCart={addCart } />
               </div>
             ))}
           </div>
@@ -40,7 +43,7 @@ const Home = () => {
           <div className="row row-cols-1 row-cols-md-4 g-4">
             {data.topPrice35.shopProducts.map((item) => (
               <div key={item.id} className="col">
-                <ProducItem item={item} />
+                <ProducItem item={item} showDetails={showDetails} addCart={addCart } />
               </div>
             ))}
           </div>
