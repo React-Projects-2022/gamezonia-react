@@ -3,8 +3,8 @@
 Library to manage UI elements use in ecommerce or similar applications.
 
 ## Dependencies use:
-* Bootstrap: "bootstrap": "^5.1.3"
-* npm install --save @fortawesome/free-solid-svg-icons
+* Bootstrap: 5
+* [Font Awesome:](https://fontawesome.com/start)
 
 ## Library based on:
 

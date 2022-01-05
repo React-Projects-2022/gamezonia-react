@@ -26,7 +26,7 @@
   
   .heart i {
     font-size: 22px;
-    color: blue;
+    color: var(--heart);
   }
   
   .heart-red {
@@ -55,7 +55,7 @@
     height: 28px;
     width: 100%;
     max-width: 70px;
-    background-color: #124feb;
+    background-color: var(--primary-color-gamezonia);
     color: #fff;
     position: absolute;
     top: 185px;
@@ -80,27 +80,27 @@
   
   .last-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     padding: 0px 20px;
   }
   
   .fa-shopping-bag {
     font-size: 25px;
-    color: blue;
+    color: var(--primary-color-gamezonia);
   }
   
   .fa-comment-o {
     font-size: 25px;
-    color: blue;
+    color: var(--primary-color-gamezonia);
     margin-left: 10px;
   }
   
   .buttons button {
     height: 30px;
     width: 80px;
-    color: blue;
-    border: 2px solid blue;
+    color: var(--primary-color-gamezonia);
+    border: 2px solid var(--primary-color-gamezonia);
     background-color: #fff;
     font-size: 13px;
     border-radius: 3px;
@@ -108,9 +108,9 @@
     margin-bottom: 10px;
   }
   
-  .buttons:hover button {
+  .buttons button:hover {
     color: white;
-    background-color: blue;
+    background-color: var(--primary-color-gamezonia);
   }
   
   .truncate-one-line {

@@ -4,7 +4,7 @@ import Navbar from "./core/components/Navbar";
 const Public = () => (
   <>
     <Navbar />
-    <div className="container">
+    <div className="container mb-5">
       <Outlet />
     </div>
     <Footer />
