@@ -1,4 +1,5 @@
 import { ProducItem } from "./ProductItem";
+import PropTypes from "prop-types";
 
 const ProductItemGroup = ({ title, products, showDetails, addCart }) => (
   <>
@@ -16,3 +17,11 @@ const ProductItemGroup = ({ title, products, showDetails, addCart }) => (
 );
 
 export { ProductItemGroup };
+
+ProductItemGroup.propTypes = {
+  title: PropTypes.string.isRequired,
+  products: PropTypes.array.isRequired,
+  showDetails: PropTypes.func.isRequired,
+  addCart: PropTypes.func.isRequired,
+};
+

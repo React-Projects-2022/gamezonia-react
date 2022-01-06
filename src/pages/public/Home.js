@@ -20,20 +20,20 @@ const Home = () => {
             <p key={item.id}>{item.product.name}</p>
           ))}
           <ProductItemGroup
-            title={"PC"}
-            products={data.pc.shopProducts}
-            showDetails={showDetails}
-            addCart={addCart}
-          />
-          <ProductItemGroup
-            title={"Playstation 4"}
+            title={"Juegos de PS4"}
             products={data.ps4.shopProducts}
             showDetails={showDetails}
             addCart={addCart}
           />
           <ProductItemGroup
-            title={"35 € o menos"}
+            title={"Juegos más económicos (<35 €)"}
             products={data.topPrice35.shopProducts}
+            showDetails={showDetails}
+            addCart={addCart}
+          />
+          <ProductItemGroup
+            title={"Juegos de PC"}
+            products={data.pc.shopProducts}
             showDetails={showDetails}
             addCart={addCart}
           />

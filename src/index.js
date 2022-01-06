@@ -7,7 +7,7 @@ import { GraphQLConfig } from "./graphql/config";
 import "./index.css";
 
 const graphQLConfig = new GraphQLConfig(
-  "https://gamezonia-api.herokuapp.com/graphql"
+  "http://localhost:2002/graphql"
 );
 ReactDOM.render(
   <ApolloProvider client={graphQLConfig.getClient()}>

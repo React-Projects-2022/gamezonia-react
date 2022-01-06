@@ -1,9 +1,10 @@
+@import url("root.css");
 .ratingSection {
     margin-top: -5px;
     margin-bottom: -10px;
 }
 .checked {
-  color: orange;
+  color: var(--rating-checked);
 }
 .star,
 .star-20,

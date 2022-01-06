@@ -1,6 +1,7 @@
 import "./../styles/product-item.css";
 import { Rating } from "./Rating";
 import PropTypes from "prop-types";
+import { Button } from "./Button";
 
 export const ProducItem = ({ item, showDetails, addCart }) => {
   // https://bbbootstrap.com/snippets/product-card-template-hover-effect-and-animation-23224168
@@ -16,7 +17,7 @@ export const ProducItem = ({ item, showDetails, addCart }) => {
             <div className="border">
               <img src={item.product.img} alt="" />
             </div>
-            <span>{item.price} €</span>
+            <span>€ {item.price}</span>
           </div>
           <div className="bottom-div">
             <h5 className="truncate-one-line">{item.product.name}</h5>
@@ -31,16 +32,15 @@ export const ProducItem = ({ item, showDetails, addCart }) => {
           </div>
           <div className="last-section text-center">
             <div className="buttons">
-              <button
-                onClick={() => showDetails(item.id)}
-                title="Go to game more details"
-              >
-                <i className="fas fa-info-circle"></i>
-              </button>
+              <Button params={item.id}
+                text={<i className="fas fa-info-circle"></i>}
+                handleAction={showDetails}
+              />
               &nbsp;
-              <button onClick={() => addCart(item.id)} title="Add to cart">
-                <i className="fas fa-cart-plus"></i>
-              </button>
+              <Button params={item.id}
+                text={<i className="fas fa-cart-plus"></i>}
+                handleAction={addCart}
+              />
             </div>
           </div>
         </div>

@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { QuantitySelector, Rating } from "../../react-shop-ui";
-import { useLazyQuery } from "@apollo/client";
-import { DETAILS_PAGE } from "./../../graphql/operations/query/details-page";
 import { useParams } from "react-router-dom";
-import "./../../styles/public/details.css";
+import { useLazyQuery } from "@apollo/client";
+
+import { QuantitySelector, Rating } from "../../react-shop-ui";
+import { DETAILS_PAGE } from "./../../graphql/operations/query/details-page";
 import { navigateTo } from "../../helpers/navigate";
 import Loading from "../../components/core/Loading";
+
+import "./../../styles/public/details.css";
 const Details = () => {
   const [quantity, setQuantity] = useState(1);
-  const [idProduct, setIdProduct] = useState(useParams().id)
+  const [idProduct, setIdProduct] = useState(useParams().id);
   const [principalImage, setPrincipalImage] = useState("");
   const [getDetails, { data, loading }] = useLazyQuery(DETAILS_PAGE);
   const detailsSelect = !!data && data.details.shopProduct;
@@ -39,8 +41,12 @@ const Details = () => {
   const selectOtherPlatform = (event) => {
     const id = +event.target.value;
     setIdProduct(id);
-    window.history.replaceState({}, '', `/games/details/${id}`);
-  }
+    window.history.replaceState({}, "", `/games/details/${id}`);
+  };
+
+  const addCart = () => {
+    console.log(`Add cart product: ${detailsSelect.product.name} ${quantity}`);
+  };
 
   return (
     <>
@@ -64,7 +70,13 @@ const Details = () => {
             </div>
 
             <div className="col-md-4">
-              <h3 className="my-3">{<p>{detailsSelect.product.name} ({detailsSelect.platform.name})</p>}</h3>
+              <h3 className="my-3">
+                {
+                  <p>
+                    {detailsSelect.product.name} ({detailsSelect.platform.name})
+                  </p>
+                }
+              </h3>
               {
                 <Rating
                   max={5}
@@ -77,22 +89,32 @@ const Details = () => {
               <p className="price mt-2">€ {detailsSelect.price}</p>
               {<p className="mt-3">Stock: {detailsSelect.stock}</p>}
               <hr />
-              { (detailsSelect.stock === 0) ?
-                <span>No hay stock. Producto no disponible en este momento.</span> :
+              {detailsSelect.stock === 0 ? (
+                <span>
+                  No hay stock. Producto no disponible en este momento.
+                </span>
+              ) : (
                 <QuantitySelector
                   stock={detailsSelect.stock}
                   updateValue={updateValue}
                 />
-              }
-              <br/>
+              )}
+              <br />
               <span className="h5">Plataformas:</span>&nbsp;&nbsp;
               <select onChange={selectOtherPlatform}>
-                <option value={detailsSelect.id}>{ detailsSelect.platform.name }</option>
-                { detailsSelect.relationalProducts.map((item) => (
-                  <option value={item.id} key={item.id}>{item.platform.name }</option>
+                <option value={detailsSelect.id}>
+                  {detailsSelect.platform.name}
+                </option>
+                {detailsSelect.relationalProducts.map((item) => (
+                  <option value={item.id} key={item.id}>
+                    {item.platform.name}
+                  </option>
                 ))}
               </select>
-              <br/>
+              <br />
+              <button className="btn btn-outline-dark mt-2" onClick={addCart}>
+                <i className="fas fa-cart-plus"></i>&nbsp;Add cart
+              </button>
             </div>
           </div>
 
