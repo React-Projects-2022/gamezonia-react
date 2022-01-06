@@ -8,22 +8,21 @@ import { navigateTo } from "../../helpers/navigate";
 import Loading from "../../components/core/Loading";
 const Details = () => {
   const [quantity, setQuantity] = useState(1);
+  const [idProduct, setIdProduct] = useState(useParams().id)
   const [principalImage, setPrincipalImage] = useState("");
   const [getDetails, { data, loading }] = useLazyQuery(DETAILS_PAGE);
-  const params = useParams();
-  const paramsId = +params.id;
   const detailsSelect = !!data && data.details.shopProduct;
   const relationalItems = !!data && data.randomItems.shopProducts;
   useEffect(
     () =>
       getDetails({
         variables: {
-          id: paramsId,
+          id: +idProduct,
           showPlatform: true,
           relationScreens: true,
         },
       }),
-    [getDetails, paramsId]
+    [getDetails, idProduct]
   );
 
   useEffect(() => {
@@ -36,6 +35,12 @@ const Details = () => {
 
   const imageClick = (item) =>
     setPrincipalImage(detailsSelect.product.screenshoot[item]);
+
+  const selectOtherPlatform = (event) => {
+    const id = +event.target.value;
+    setIdProduct(id);
+    window.history.replaceState({}, '', `/games/details/${id}`);
+  }
 
   return (
     <>
@@ -69,22 +74,25 @@ const Details = () => {
                   }}
                 />
               }
+              <p className="price mt-2">€ {detailsSelect.price}</p>
               {<p className="mt-3">Stock: {detailsSelect.stock}</p>}
               <hr />
-              {
+              { (detailsSelect.stock === 0) ?
+                <span>No hay stock. Producto no disponible en este momento.</span> :
                 <QuantitySelector
                   stock={detailsSelect.stock}
                   updateValue={updateValue}
                 />
               }
-
-              <h3 className="my-3">Project Details</h3>
-              <ul>
-                <li>Lorem Ipsum</li>
-                <li>Dolor Sit Amet</li>
-                <li>Consectetur</li>
-                <li>Adipiscing Elit</li>
-              </ul>
+              <br/>
+              <span className="h5">Plataformas:</span>&nbsp;&nbsp;
+              <select onChange={selectOtherPlatform}>
+                <option value={detailsSelect.id}>{ detailsSelect.platform.name }</option>
+                { detailsSelect.relationalProducts.map((item) => (
+                  <option value={item.id} key={item.id}>{item.platform.name }</option>
+                ))}
+              </select>
+              <br/>
             </div>
           </div>
 
@@ -95,7 +103,7 @@ const Details = () => {
               relationalItems.map((item, index) => (
                 <div className="col-md-2 col-sm-6 mb-4" key={index}>
                   <a
-                    onClick={() => navigateTo("details", item.id)}
+                    onClick={() => navigateTo("games/details", item.id)}
                     title={item.product.name.concat(` (${item.platform.name})`)}
                   >
                     <img
