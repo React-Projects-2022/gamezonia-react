@@ -3,9 +3,8 @@ import { Rating } from "./Rating";
 import PropTypes from "prop-types";
 import { Button } from "./Button";
 
-export const ProducItem = ({ item, showDetails, addCart }) => {
+export const ProducItem = ({ item, showDetails, addCart, showDesc}) => {
   // https://bbbootstrap.com/snippets/product-card-template-hover-effect-and-animation-23224168
-
   return (
     <>
       {item ? (
@@ -21,7 +20,7 @@ export const ProducItem = ({ item, showDetails, addCart }) => {
           </div>
           <div className="bottom-div">
             <h5 className="truncate-one-line">{item.product.name}</h5>
-            <p>{item.product.description ? item.product.description : ""}</p>
+            { showDesc ? <p>{item.platform.name}</p>: <br/>}
             <Rating
               max={5}
               ratingItem={{

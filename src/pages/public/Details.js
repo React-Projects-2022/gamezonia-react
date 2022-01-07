@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLazyQuery } from "@apollo/client";
 
-import { QuantitySelector, Rating } from "../../react-shop-ui";
+import { QuantitySelector, Rating } from "@mugan86/react-shop-ui";
 import { DETAILS_PAGE } from "./../../graphql/operations/query/details-page";
 import { navigateTo } from "../../helpers/navigate";
 import Loading from "../../components/core/Loading";
@@ -52,7 +52,7 @@ const Details = () => {
     <>
       {loading && <Loading />}
       {!!data && (
-        <>
+        <div className="container mb-2">
           <div className="row game-details">
             <div className="col-md-1" id="screens-section">
               {detailsSelect.product.screenshoot.map((item, index) => (
@@ -138,7 +138,7 @@ const Details = () => {
               ))
             }
           </div>
-        </>
+        </div>
       )}
     </>
   );
