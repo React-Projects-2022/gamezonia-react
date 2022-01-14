@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import "./../styles/rating.css";
@@ -7,10 +7,6 @@ export const Rating = ({ max, ratingItem }) => {
   const [starsCssValues, setStarsCssValues] = useState([]);
 
   useEffect(() => {
-    if (ratingItem === undefined || ratingItem === null) {
-      ratingItem.value = 0;
-      ratingItem.count = 0;
-    }
     setStarsCssValues(Array(max).fill(""));
   }, [max, ratingItem]);
   return (

@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
-const Navbar = () => (
+import { useContext } from "react";
+import { AppContext } from "../../../../application/provider";
+const Navbar = () => {
+  const [session] = useContext(AppContext);
+  return(
   <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -24,7 +28,9 @@ const Navbar = () => (
                 Home
               </Link>
             </li>
-            <li className="nav-item">
+            {
+              /**
+               * <li className="nav-item">
               <Link className="nav-link" to="/login">
                 Login
               </Link>
@@ -34,6 +40,8 @@ const Navbar = () => (
                 Register
               </Link>
             </li>
+               */
+            }
             <li className="nav-item">
               <Link className="nav-link" to="/admin">
                 Admin
@@ -45,10 +53,15 @@ const Navbar = () => (
               </Link>
             </li>
           </ul>
+          <span className="navbar-text">
+            {session.user}
+          </span>
+          
         </div>
       </div>
     </nav>
   </>
-);
+)
+  };
 
 export default Navbar;

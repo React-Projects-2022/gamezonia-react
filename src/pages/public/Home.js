@@ -3,16 +3,14 @@ import Loading from "../../components/core/Loading";
 import { HOME_PAGE } from "../../graphql/operations/query/home-page";
 import { navigateTo } from "../../helpers/navigate";
 import { useEffect, useState } from "react";
-import { Carousel, ProductItemGroup } from "../../react-shop-ui";
+import { CONSTANTS, Carousel, ProductItemGroup } from "@mugan86/react-shop-ui";
+
 const Home = () => {
   const { loading, error, data } = useQuery(HOME_PAGE, {
     variables: { showPlatform: true, relationScreens: false },
   });
   const [carousel, setCarousel] = useState([]);
-  document.title = "Gamezonia - Home";
-  const showDetails = (params) => navigateTo("games/details", params);
-  const addCart = (itemId) =>
-    console.log(`Add to cart one unit: ${itemId} product`);
+
   useEffect(() => {
     if (!!data && data.carousel.shopProducts) {
       let carouselItems = [];
@@ -25,14 +23,20 @@ const Home = () => {
           background: item.product.img,
         })
       );
-      console.log(carouselItems);
       setCarousel(carouselItems);
     }
   }, [data]);
+
+  const showDetails = (params) => navigateTo("games/details", params);
+  const addCart = (itemId) =>
+    console.log(`Add to cart one unit: ${itemId} product`);
+
+  const selectMoney = CONSTANTS.CURRENCY_LIST.EURO;
   return (
     <>
       {loading && <Loading />}
-      {!loading && (
+      {error && <p>Error: {error}</p>}
+      {!loading && !error && (
         <>
           <h1>Home</h1>
           {carousel.length > 2 && <Carousel carousel={carousel} />}
@@ -42,6 +46,7 @@ const Home = () => {
               products={data.ps4.shopProducts}
               showDetails={showDetails}
               addCart={addCart}
+              selectMoney={selectMoney}
             />
             <ProductItemGroup
               showDesc={true}
@@ -49,12 +54,14 @@ const Home = () => {
               products={data.topPrice35.shopProducts}
               showDetails={showDetails}
               addCart={addCart}
+              selectMoney={selectMoney}
             />
             <ProductItemGroup
               title={"Juegos de PC"}
               products={data.pc.shopProducts}
               showDetails={showDetails}
               addCart={addCart}
+              selectMoney={selectMoney}
             />
           </div>
         </>

@@ -2,13 +2,15 @@ import { useState } from "react";
 import { LoginData } from "../../../components/LoginData";
 import { useForm } from "react-hook-form";
 import "./forms.css";
+import { EMAIL_VALIDATIONS } from "../../../constants/regex";
 const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onChange"
+  });
 
   const [login, setLogin] = useState({
     email: "",
@@ -22,7 +24,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="container mb-2">
       <h1>Login</h1>
       {login.email !== "" ? (
         <LoginData email={login.email} password={login.password} />
@@ -30,38 +32,44 @@ const Login = () => {
         <p>Haz click para iniciar sesión</p>
       )}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="email">Email</label>
-        <input
-          defaultValue={defaultValue}
-          {...register("email", {
-            required: "This field is required",
-            pattern: {
-              value:
-                /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-              message: "Invalid email address",
-            },
-          })}
-        />
-        {errors.email && <p className="validation">{errors.email.message}</p>}
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            autoFocus
+            className="form-control"
+            defaultValue={defaultValue}
+            placeholder="Input email address"
+            {...register("email", {
+              required: "This field is required",
+              pattern: {
+                value: EMAIL_VALIDATIONS,
+                message: "Invalid email address",
+              },
+            })}
+          />
+          {errors.email && <p className="validation alert alert-danger">{errors.email.message}</p>}{" "}
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            className="form-control"
+            type="password"
+            defaultValue="123456"
+            placeholder="Input password"
+            {...register("password", { required: true, minLength: 6})}
+          />
 
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          defaultValue="123456"
-          placeholder="password"
-          {...register("password", { required: true })}
-        />
-
-        {errors.password && (
-          <p className="validation">This field is required</p>
-        )}
-        {!errors.password || watch("password") !== " " ? (
-          <input type="submit" />
-        ) : (
-          <input disabled type="submit" />
-        )}
+          {errors.password && (
+            <p className="validation alert alert-danger">This field is required and min length is 6 characters</p>
+          )}
+        </div>
+        <input type="submit" className="btn btn-dark" />
       </form>
-    </>
+    </div>
   );
 };
 

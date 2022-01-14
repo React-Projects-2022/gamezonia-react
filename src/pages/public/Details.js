@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLazyQuery } from "@apollo/client";
 
-import { QuantitySelector, Rating } from "@mugan86/react-shop-ui";
+import { Rating, QuantitySelector } from "@mugan86/react-shop-ui";
 import { DETAILS_PAGE } from "./../../graphql/operations/query/details-page";
 import { navigateTo } from "../../helpers/navigate";
 import Loading from "../../components/core/Loading";

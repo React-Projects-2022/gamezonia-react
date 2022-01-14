@@ -1,5 +1,7 @@
 import { LOGIN_QUERY } from "../graphql/operations/query/user";
 import { useQuery } from "@apollo/client";
+import {useContext, useEffect} from 'react';
+import { AppContext } from "../application/provider";
 import PropTypes from "prop-types";
 
 export const LoginData = ({ email, password }) => {
@@ -9,8 +11,11 @@ export const LoginData = ({ email, password }) => {
 
   console.log(loading, data);
 
+
   if (data && data.login.status) {
-    window.alert("LOGIN OK");
+    console.log(data.login.token);
+    
+    // window.alert("LOGIN OK");
     window.location.replace("/");
   }
   return (
@@ -20,7 +25,7 @@ export const LoginData = ({ email, password }) => {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <p>{data.login.message}</p>
+        <p className="alert alert-danger">{data.login.message}</p>
       )}
     </>
   );

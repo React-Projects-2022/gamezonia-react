@@ -19,3 +19,7 @@ code {
 span.loading {
   margin-left: 33%;
 }
+
+.card {
+  width: 99% !important
+}
