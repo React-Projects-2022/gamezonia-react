@@ -46,6 +46,7 @@ const Details = () => {
 
   const addCart = () => {
     console.log(`Add cart product: ${detailsSelect.product.name} ${quantity}`);
+    alert(`No implementado: ${detailsSelect.product.name} ${quantity}`)
   };
 
   return (
@@ -123,17 +124,14 @@ const Details = () => {
             {
               // Bucle con los items
               relationalItems.map((item, index) => (
-                <div className="col-md-2 col-sm-6 mb-4" key={index}>
-                  <a
+                <div className="col-md-2 col-sm-6 mb-4" key={index} 
                     onClick={() => navigateTo("games/details", item.id)}
-                    title={item.product.name.concat(` (${item.platform.name})`)}
-                  >
+                    title={item.product.name.concat(` (${item.platform.name})`)}>
                     <img
                       className="img-fluid more-games"
                       src={item.product.img}
                       alt="{{ itemInfo.name }} ( {{ itemInfo.description }})"
                     />
-                  </a>
                 </div>
               ))
             }

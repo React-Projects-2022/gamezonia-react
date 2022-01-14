@@ -1,7 +1,6 @@
 import { LOGIN_QUERY } from "../graphql/operations/query/user";
 import { useQuery } from "@apollo/client";
-import {useContext, useEffect} from 'react';
-import { AppContext } from "../application/provider";
+
 import PropTypes from "prop-types";
 
 export const LoginData = ({ email, password }) => {

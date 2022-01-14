@@ -28,8 +28,11 @@ const Home = () => {
   }, [data]);
 
   const showDetails = (params) => navigateTo("games/details", params);
-  const addCart = (itemId) =>
+  const addCart = (itemId) => {
     console.log(`Add to cart one unit: ${itemId} product`);
+    alert(`No implementado. ID del producto: ${itemId}`)
+  }
+    
 
   const selectMoney = CONSTANTS.CURRENCY_LIST.EURO;
   return (
