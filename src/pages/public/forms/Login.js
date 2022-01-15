@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LoginData } from "../../../components/LoginData";
 import { useForm } from "react-hook-form";
 import "./forms.css";
 import { EMAIL_VALIDATIONS } from "../../../constants/regex";
+import { AppContext } from "../../../application/provider";
 const Login = () => {
   const {
     register,
@@ -17,12 +18,19 @@ const Login = () => {
     password: "",
   });
 
+  const [loginState] = useContext(AppContext);
+
   const defaultValue = "user@gamezonia.com";
 
   const onSubmit = (data) => {
     setLogin({ email: data.email, password: data.password });
   };
 
+  if (loginState.token !== "" && !new Date(loginState.expiresIn).getTime() < new Date().getTime() / 1000)
+   {
+     console.log("Session OK");
+     window.location.replace("/");
+   }
   return (
     <div className="container mb-2">
       <h1>Login</h1>

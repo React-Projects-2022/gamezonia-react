@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AppContext } from "../../../../application/provider";
 const Navbar = () => {
   const [session] = useContext(AppContext);
+  console.log("Navbar", session)
   return(
   <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -54,7 +55,7 @@ const Navbar = () => {
             </li>
           </ul>
           <span className="navbar-text">
-            {session.user}
+            {session.displayName}
           </span>
           
         </div>
