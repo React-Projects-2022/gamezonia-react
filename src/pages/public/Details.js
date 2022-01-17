@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useSubscription, gql } from "@apollo/client";
 
 import { Rating, QuantitySelector } from "@mugan86/react-shop-ui";
 import { DETAILS_PAGE } from "./../../graphql/operations/query/details-page";
+
 import { navigateTo } from "../../helpers/navigate";
 import Loading from "../../components/core/Loading";
 
@@ -12,9 +13,9 @@ const Details = () => {
   const [quantity, setQuantity] = useState(1);
   const [idProduct, setIdProduct] = useState(useParams().id);
   const [principalImage, setPrincipalImage] = useState("");
-  const [getDetails, { data, loading }] = useLazyQuery(DETAILS_PAGE);
-  const detailsSelect = !!data && data.details.shopProduct;
-  const relationalItems = !!data && data.randomItems.shopProducts;
+  const [getDetails, { data: dataDetails, loading }] = useLazyQuery(DETAILS_PAGE);
+  const detailsSelect = !!dataDetails && dataDetails.details.shopProduct;
+  const relationalItems = !!dataDetails && dataDetails.randomItems.shopProducts;
   useEffect(
     () =>
       getDetails({
@@ -33,6 +34,16 @@ const Details = () => {
     }
   }, [detailsSelect]);
 
+  const { data: stock } = useSubscription(gql`
+    subscription obtenerDetallesActualizados($id: Int!) {
+      selectProductStockUpdate(id: $id) {
+        id
+        stock
+      }
+    }
+  `);
+  
+
   const updateValue = (qty) => setQuantity(qty);
 
   const imageClick = (item) =>
@@ -46,13 +57,36 @@ const Details = () => {
 
   const addCart = () => {
     console.log(`Add cart product: ${detailsSelect.product.name} ${quantity}`);
-    alert(`No implementado: ${detailsSelect.product.name} ${quantity}`)
+    alert(`No implementado: ${detailsSelect.product.name} ${quantity}`);
   };
+
+  if (stock) {
+    console.log("Nuevo stock", stock);
+  }
+
+  /**
+   * this.productService.stockUpdateListener(id).subscribe(
+      (result) => {
+        console.log('Actualización', result);
+        this.product.stock = result.stock;
+
+        // COmprobar que cantidad seleccionada es mayor que stock.
+        // Si se da esta situación, el toope pasarña al valor del stock
+        if (this.product.qty > this.product.stock) {
+          this.product.qty = this.product.stock;
+        }
+
+        if (this.product.stock === 0) {
+          this.product.qty = 1;
+        }
+      }
+    );
+   */
 
   return (
     <>
       {loading && <Loading />}
-      {!!data && (
+      {!!dataDetails && (
         <div className="container mb-2">
           <div className="row game-details">
             <div className="col-md-1" id="screens-section">
@@ -124,14 +158,17 @@ const Details = () => {
             {
               // Bucle con los items
               relationalItems.map((item, index) => (
-                <div className="col-md-2 col-sm-6 mb-4" key={index} 
-                    onClick={() => navigateTo("games/details", item.id)}
-                    title={item.product.name.concat(` (${item.platform.name})`)}>
-                    <img
-                      className="img-fluid more-games"
-                      src={item.product.img}
-                      alt="{{ itemInfo.name }} ( {{ itemInfo.description }})"
-                    />
+                <div
+                  className="col-md-2 col-sm-6 mb-4"
+                  key={index}
+                  onClick={() => navigateTo("games/details", item.id)}
+                  title={item.product.name.concat(` (${item.platform.name})`)}
+                >
+                  <img
+                    className="img-fluid more-games"
+                    src={item.product.img}
+                    alt="{{ itemInfo.name }} ( {{ itemInfo.description }})"
+                  />
                 </div>
               ))
             }

@@ -41,7 +41,6 @@ const Home = () => {
       {error && <p>Error: {error}</p>}
       {!loading && !error && (
         <>
-          <h1>Home</h1>
           {carousel.length > 2 && <Carousel carousel={carousel} />}
           <div className="container mb-5">
             <ProductItemGroup
