@@ -21,18 +21,8 @@ const PRODUCTS = [
   },
 ];
 
-const getTotalSubTotal = () => {
-    let total = 0;
-    let subtotal = 0;
-    // eslint-disable-next-line array-callback-return
-    PRODUCTS.map ((product) => {
-        subtotal = subtotal + product.qty;
-        total = total + (product.qty * product.price)
-    })
-    return [total, subtotal]
-}
 export const SHOPING_CART_MOCK = {
-  total: getTotalSubTotal[0],
-  subtotal: getTotalSubTotal[1],
+  total: 518.8,
+  subtotal: 10,
   products: PRODUCTS,
 };

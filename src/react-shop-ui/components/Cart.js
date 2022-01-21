@@ -1,17 +1,16 @@
 import { navigateTo } from "../../helpers/navigate";
 import "./../styles/cart.css";
-import { useState } from "react";
 import { CONSTANTS } from "@mugan86/react-shop-ui";
-import { SHOPING_CART_MOCK } from "../../constants/shopping-cart";
 import { CartItem } from "./CartItem";
+import { useCart } from "../hooks/useCart";
 export const Cart = () => {
-
-  const [cartData, setCartData] = useState(
+  const { cart: cartData, clearCart, clearItem, updateValue, updateCart } = useCart()
+  /*const [cartData, setCartData] = useState(
     localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : {}
   );
-  console.log(cartData, Object.keys(cartData).length);
+  console.log(cartData, Object.keys(cartData).length);*/
   const goToHomePage = () => navigateTo("");
-  const clearCart = () => {
+  /*const clearCart = () => {
     localStorage.removeItem("cart");
     setCartData({})
   };
@@ -25,10 +24,10 @@ export const Cart = () => {
       return;
     }
     setCartData(JSON.parse(localStorage.getItem("cart")));
-  }
+  }*/
   const selectMoney = CONSTANTS.CURRENCY_LIST.EURO;
 
-  const updateValue = (counter, productId) => {
+  /*const updateValue = (counter, productId) => {
     if (Object.keys(cartData).length > 0 && cartData.products.length > 0) {
       console.log("Vamos a actualizar...");
       const updateProduct = cartData.products[cartData.products.findIndex(el => el.id === productId)];
@@ -36,7 +35,7 @@ export const Cart = () => {
       localStorage.setItem("cart", JSON.stringify(cartData));
       
     }
-  };
+  };*/
 
   // Manage shoppin cart state
 
@@ -109,12 +108,7 @@ export const Cart = () => {
             desde los productos con la opción de Añadir a la cesta
           </span>
           <button
-            onClick={() =>
-              {
-                localStorage.setItem("cart", JSON.stringify(SHOPING_CART_MOCK));
-                setCartData(SHOPING_CART_MOCK);
-              }
-            }
+            onClick={() => updateCart() }
           >
             Load cart
           </button>
