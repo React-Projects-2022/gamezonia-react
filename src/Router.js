@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import loadable from "@loadable/component";
+import ShoppingCart from "./pages/public/ShoppingCart";
 // Principal layouts
 const PublicLayout = loadable(() => import("./pages/public/Public"));
 const AdminLayout = loadable(() => import("./pages/private/Layout"));
@@ -25,6 +26,7 @@ const Router = () => (
       <Route path="games/details/:id" element={<Details />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="cart" element={<ShoppingCart />} />
     </Route>
     <Route path="/admin" element={<AdminLayout />}>
       <Route index element={<Dashboard />} />

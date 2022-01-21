@@ -5,6 +5,13 @@
  * @param {*} path 
  * @param {*} params 
  */
-export const navigateTo = (path, params) => {
-  window.location.href = window.location.origin.concat(`/${path}/${params}`);
+ export const navigateTo = (path, params) => {
+  if (params) {
+     window.location.href = window.location.origin.concat(`/${path}/${params}`);
+     return;
+  }
+  window.location.href = window.location.origin.concat(`/${path}`);
+
 };
+
+export const openExternalURL = (url) => window.open(url, '_blank');

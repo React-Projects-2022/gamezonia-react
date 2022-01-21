@@ -4,6 +4,7 @@ import { AppContext } from "../../../../application/provider";
 const Navbar = () => {
   const [session] = useContext(AppContext);
   console.log("Navbar", session)
+
   return(
   <>
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -51,6 +52,11 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link" to="/notfound">
                 Not found
+              </Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/cart">
+                Shopping Cart
               </Link>
             </li>
           </ul>
