@@ -4,40 +4,13 @@ import { CONSTANTS } from "@mugan86/react-shop-ui";
 import { CartItem } from "./CartItem";
 import { useCart } from "../hooks/useCart";
 export const Cart = () => {
-  const { cart: cartData, clearCart, clearItem, updateValue, updateCart } = useCart()
-  /*const [cartData, setCartData] = useState(
-    localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : {}
-  );
-  console.log(cartData, Object.keys(cartData).length);*/
+  const { cart: cartData, clearCart, clearItem, updateValue, updateCart, total } = useCart()
+  
   const goToHomePage = () => navigateTo("");
-  /*const clearCart = () => {
-    localStorage.removeItem("cart");
-    setCartData({})
-  };
-  const clearItem = (removeItem) => {
-    
-    cartData.products = cartData.products.filter(value => value.id !== removeItem);
-    localStorage.setItem("cart", JSON.stringify(cartData))
-    console.log(cartData);
-    if (cartData.products.length === 0) {
-      clearCart();
-      return;
-    }
-    setCartData(JSON.parse(localStorage.getItem("cart")));
-  }*/
+  
   const selectMoney = CONSTANTS.CURRENCY_LIST.EURO;
 
-  /*const updateValue = (counter, productId) => {
-    if (Object.keys(cartData).length > 0 && cartData.products.length > 0) {
-      console.log("Vamos a actualizar...");
-      const updateProduct = cartData.products[cartData.products.findIndex(el => el.id === productId)];
-      updateProduct.qty = counter;
-      localStorage.setItem("cart", JSON.stringify(cartData));
-      
-    }
-  };*/
-
-  // Manage shoppin cart state
+  
 
   return (
     <>
@@ -75,7 +48,7 @@ export const Cart = () => {
               <span className="text-primary price-total">
                 {" "}
                 {CONSTANTS.CURRENCIES_SYMBOL[selectMoney]}{" "}
-                {Number.parseFloat(cartData.total).toFixed(2)}{" "}
+                {Number.parseFloat(total).toFixed(2)}{" "}
               </span>
             </div>
           </div>
