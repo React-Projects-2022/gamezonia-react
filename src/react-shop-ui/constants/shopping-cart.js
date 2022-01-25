@@ -22,7 +22,5 @@ const PRODUCTS = [
 ];
 
 export const SHOPING_CART_MOCK = {
-  total: 518.8,
-  subtotal: 10,
   products: PRODUCTS,
 };

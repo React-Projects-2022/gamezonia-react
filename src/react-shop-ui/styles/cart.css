@@ -3,8 +3,6 @@ Snippet take by: https://www.bootdey.com/snippets/view/shop-cart
 Adapt to React
 */
 
-
-
 .shopping-cart,
 .wishlist-table,
 .order-table {
@@ -206,4 +204,8 @@ Adapt to React
   font-weight: 700;
   font-size: 24px;
   margin-top: -7px;
+}
+
+.product-item:hover {
+  cursor: pointer;
 }

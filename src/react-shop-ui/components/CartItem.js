@@ -1,6 +1,8 @@
+import { useState } from "react";
+import PropTypes from "prop-types";
 import { CONSTANTS } from "./../constants";
 import { QuantitySelector } from "./QuantitySelector";
-import { useState } from "react";
+import { navigateTo } from "../../helpers/navigate";
 export const CartItem = ({
   product,
   selectMoney,
@@ -9,9 +11,9 @@ export const CartItem = ({
 }) => {
   const [subtotal, setSubtotal] = useState(product.qty * product.price)
   return (
-    <tr key={product.id}>
+    <tr>
       <td>
-        <div className="product-item">
+        <div className="product-item" key={product.id} onClick={() => navigateTo("games/details", product.id)}>
           <span className="product-thumb">
             <img src={product.img} alt={product.name} />
           </span>
@@ -52,4 +54,11 @@ export const CartItem = ({
       </td>
     </tr>
   );
+};
+
+CartItem.propTypes = {
+  product: PropTypes.object.isRequired,
+  selectMoney: PropTypes.string.isRequired,
+  updateValue: PropTypes.func.isRequired,
+  clearItem: PropTypes.func.isRequired,
 };

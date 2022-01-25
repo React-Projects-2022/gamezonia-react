@@ -1,16 +1,21 @@
 import { navigateTo } from "../../helpers/navigate";
-import "./../styles/cart.css";
 import { CONSTANTS } from "@mugan86/react-shop-ui";
 import { CartItem } from "./CartItem";
 import { useCart } from "../hooks/useCart";
+import "./../styles/cart.css";
 export const Cart = () => {
-  const { cart: cartData, clearCart, clearItem, updateValue, updateCart, total } = useCart()
-  
-  const goToHomePage = () => navigateTo("");
-  
-  const selectMoney = CONSTANTS.CURRENCY_LIST.EURO;
+  const {
+    cart: cartData,
+    clearCart,
+    clearItem,
+    updateValue,
+    updateCart,
+    total,
+  } = useCart();
 
-  
+  const goToHomePage = () => navigateTo("");
+
+  const selectMoney = CONSTANTS.CURRENCY_LIST.EURO;
 
   return (
     <>
@@ -35,14 +40,18 @@ export const Cart = () => {
               </thead>
               <tbody>
                 {cartData.products.map((product) => (
-                  <CartItem product={product} key={product.id} selectMoney={selectMoney} 
-                  updateValue={updateValue} clearItem={clearItem}/>
+                  <CartItem
+                    product={product}
+                    key={product.id}
+                    selectMoney={selectMoney}
+                    updateValue={updateValue}
+                    clearItem={clearItem}
+                  />
                 ))}
               </tbody>
             </table>
           </div>
           <div className="shopping-cart-footer">
-            
             <div className="column text-lg">
               To Pay:{" "}
               <span className="text-primary price-total">
@@ -62,10 +71,7 @@ export const Cart = () => {
               </button>
             </div>
             <div className="column">
-              <button
-                className="btn btn-danger"
-                onClick={clearCart}
-              >
+              <button className="btn btn-danger" onClick={clearCart}>
                 <i className="fas fa-trash-alt"></i> Clear Cart
               </button>
               <button className="btn btn-success" href="#">
@@ -80,11 +86,7 @@ export const Cart = () => {
             No tienes elementos guardados en el carrito de compra. Añádelos
             desde los productos con la opción de Añadir a la cesta
           </span>
-          <button
-            onClick={() => updateCart() }
-          >
-            Load cart
-          </button>
+          <button onClick={() => updateCart()}>Load cart</button>
         </>
       )}
     </>

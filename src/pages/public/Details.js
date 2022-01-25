@@ -9,11 +9,14 @@ import { navigateTo } from "../../helpers/navigate";
 import Loading from "../../components/core/Loading";
 
 import "./../../styles/public/details.css";
+import { useCart } from "../../react-shop-ui/hooks/useCart";
 const Details = () => {
   const [quantity, setQuantity] = useState(1);
   const [idProduct, setIdProduct] = useState(useParams().id);
   const [principalImage, setPrincipalImage] = useState("");
-  const [getDetails, { data: dataDetails, loading }] = useLazyQuery(DETAILS_PAGE);
+  const { manageProduct } = useCart();
+  const [getDetails, { data: dataDetails, loading }] =
+    useLazyQuery(DETAILS_PAGE);
   const detailsSelect = !!dataDetails && dataDetails.details.shopProduct;
   const relationalItems = !!dataDetails && dataDetails.randomItems.shopProducts;
   useEffect(
@@ -42,7 +45,6 @@ const Details = () => {
       }
     }
   `);
-  
 
   const updateValue = (qty) => setQuantity(qty);
 
@@ -56,8 +58,23 @@ const Details = () => {
   };
 
   const addCart = () => {
-    console.log(`Add cart product: ${detailsSelect.product.name} ${quantity}`);
-    alert(`No implementado: ${detailsSelect.product.name} ${quantity}`);
+    // console.log(`Add cart product: ${detailsSelect.product.name} ${quantity}`);
+    // alert(`No implementado: ${detailsSelect.product.name} ${quantity}`);
+    console.log(detailsSelect);
+    const productToCart = {
+      description: detailsSelect.platform.name,
+      id: idProduct,
+      img: detailsSelect.product.img,
+      name: detailsSelect.product.name,
+      price: detailsSelect.price,
+      qty: quantity,
+      rating: {
+        count: detailsSelect.product.rating.count,
+        value: detailsSelect.product.rating.value,
+      },
+      stock: detailsSelect.stock,
+    };
+    manageProduct(productToCart);
   };
 
   if (stock) {

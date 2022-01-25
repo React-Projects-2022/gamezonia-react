@@ -9,7 +9,7 @@ import "./index.css";
 import Provider from "./application/provider";
 //
 const graphQLConfig = new GraphQLConfig(
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV !== "production"
     ? "http://localhost:2002/graphql"
     : "https://gamezonia-api.herokuapp.com/graphql",
     "wss://gamezonia-api.herokuapp.com/graphql"
