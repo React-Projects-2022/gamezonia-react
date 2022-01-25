@@ -47,7 +47,8 @@ export const CartItem = ({
       <td className="text-center">
         <button
           onClick={() => clearItem(product.id)}
-          className="remove-from-cart"
+          className="remove-from-cart btn btn-danger"
+          title={ `Delete ${product.name} product in cart`}
         >
           <i className="fa fa-trash"></i>
         </button>

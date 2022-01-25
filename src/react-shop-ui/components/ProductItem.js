@@ -46,7 +46,7 @@ export const ProducItem = ({
               />
               &nbsp;
               <Button
-                params={item.id}
+                params={item}
                 text={<i className="fas fa-cart-plus"></i>}
                 handleAction={addCart}
               />

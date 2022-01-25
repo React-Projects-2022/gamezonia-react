@@ -11,10 +11,10 @@ import Loading from "../../components/core/Loading";
 import "./../../styles/public/details.css";
 import { useCart } from "../../react-shop-ui/hooks/useCart";
 const Details = () => {
-  const [quantity, setQuantity] = useState(1);
+  const { manageProduct, getProductInfo } = useCart();
   const [idProduct, setIdProduct] = useState(useParams().id);
   const [principalImage, setPrincipalImage] = useState("");
-  const { manageProduct } = useCart();
+
   const [getDetails, { data: dataDetails, loading }] =
     useLazyQuery(DETAILS_PAGE);
   const detailsSelect = !!dataDetails && dataDetails.details.shopProduct;
@@ -31,12 +31,6 @@ const Details = () => {
     [getDetails, idProduct]
   );
 
-  useEffect(() => {
-    if (!!detailsSelect) {
-      setPrincipalImage(detailsSelect.product.screenshoot[0]);
-    }
-  }, [detailsSelect]);
-
   const { data: stock } = useSubscription(gql`
     subscription obtenerDetallesActualizados($id: Int!) {
       selectProductStockUpdate(id: $id) {
@@ -45,6 +39,11 @@ const Details = () => {
       }
     }
   `);
+  const dataFromCart = getProductInfo(idProduct);
+  console.log(dataFromCart.hasOwnProperty("qty"));
+  const [quantity, setQuantity] = useState(
+    dataFromCart.hasOwnProperty("qty") ? 3 : 1
+  );
 
   const updateValue = (qty) => setQuantity(qty);
 
@@ -60,7 +59,6 @@ const Details = () => {
   const addCart = () => {
     // console.log(`Add cart product: ${detailsSelect.product.name} ${quantity}`);
     // alert(`No implementado: ${detailsSelect.product.name} ${quantity}`);
-    console.log(detailsSelect);
     const productToCart = {
       description: detailsSelect.platform.name,
       id: idProduct,
@@ -76,6 +74,12 @@ const Details = () => {
     };
     manageProduct(productToCart);
   };
+
+  useEffect(() => {
+    if (!!detailsSelect) {
+      setPrincipalImage(detailsSelect.product.screenshoot[0]);
+    }
+  }, [detailsSelect]);
 
   if (stock) {
     console.log("Nuevo stock", stock);

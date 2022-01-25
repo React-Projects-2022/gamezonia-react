@@ -3,13 +3,15 @@ import Loading from "../../components/core/Loading";
 import { HOME_PAGE } from "../../graphql/operations/query/home-page";
 import { navigateTo } from "../../helpers/navigate";
 import { useEffect, useState } from "react";
-import { CONSTANTS, Carousel, ProductItemGroup } from "@mugan86/react-shop-ui";
 
+import { CONSTANTS, Carousel, ProductItemGroup } from "./../../react-shop-ui";
+import { useCart } from "../../react-shop-ui/hooks/useCart";
 const Home = () => {
   const { loading, error, data } = useQuery(HOME_PAGE, {
     variables: { showPlatform: true, relationScreens: false },
   });
   const [carousel, setCarousel] = useState([]);
+  const { manageProduct } = useCart();
 
   useEffect(() => {
     if (!!data && data.carousel.shopProducts) {
@@ -28,9 +30,23 @@ const Home = () => {
   }, [data]);
 
   const showDetails = (params) => navigateTo("games/details", params);
-  const addCart = (itemId) => {
-    console.log(`Add to cart one unit: ${itemId} product`);
-    alert(`No implementado. ID del producto: ${itemId}`)
+  const addCart = (item) => {
+    console.log(`Add to cart one unit: ${item.product.name} product`);
+    // alert(`No implementado. ID del producto: ${itemId}`)
+    const productToCart = {
+      description: item.platform.name,
+      id: item.id,
+      img: item.product.img,
+      name: item.product.name,
+      price: item.price,
+      qty: 1,
+      rating: {
+        count: item.product.rating.count,
+        value: item.product.rating.value,
+      },
+      stock: item.stock,
+    };
+    manageProduct(productToCart);
   }
     
 

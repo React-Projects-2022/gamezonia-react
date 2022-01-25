@@ -20,6 +20,8 @@ export const useCart = () => {
       setTotal(total);
     }
   };
+
+  const getProductInfo = (id) => cartData.products.filter((product) => product.id === id)[0];
   const clearItem = (removeItem) => {
     cartData.products = cartData.products.filter(
       (value) => value.id !== removeItem
@@ -107,6 +109,7 @@ export const useCart = () => {
     updateValue,
     updateCart,
     total,
-    manageProduct
+    manageProduct,
+    getProductInfo
   };
 };
