@@ -1,11 +1,11 @@
-import { Cart } from "../../react-shop-ui/components/Cart"
-
+import { Cart } from "@mugan86/react-shop-ui";
+import { navigateTo } from "./../../helpers/navigate"
 
 const ShoppingCart = () => {
     
     return (
         <div className="container mb-5">
-            <Cart />
+            <Cart navigateTo={navigateTo}/>
         </div>
         
     )

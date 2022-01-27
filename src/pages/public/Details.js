@@ -2,14 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useLazyQuery, useSubscription, gql } from "@apollo/client";
 
-import { Rating, QuantitySelector } from "@mugan86/react-shop-ui";
+import { Rating, QuantitySelector, useCart } from "@mugan86/react-shop-ui";
 import { DETAILS_PAGE } from "./../../graphql/operations/query/details-page";
 
 import { navigateTo } from "../../helpers/navigate";
 import Loading from "../../components/core/Loading";
 
 import "./../../styles/public/details.css";
-import { useCart } from "../../react-shop-ui/hooks/useCart";
 const Details = () => {
   const { manageProduct, getProductInfo } = useCart();
   const [idProduct, setIdProduct] = useState(useParams().id);

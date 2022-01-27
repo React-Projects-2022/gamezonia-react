@@ -1,9 +1,10 @@
-import { navigateTo } from "../../helpers/navigate";
-import { CONSTANTS } from "@mugan86/react-shop-ui";
+import React from "react";
+import PropTypes from "prop-types";
+import { CONSTANTS } from "../constants";
 import { CartItem } from "./CartItem";
 import { useCart } from "../hooks/useCart";
 import "./../styles/cart.css";
-export const Cart = () => {
+export const Cart = ({ navigateTo }) => {
   const {
     cart: cartData,
     clearCart,
@@ -12,8 +13,6 @@ export const Cart = () => {
     updateCart,
     total,
   } = useCart();
-
-  const goToHomePage = () => navigateTo("");
 
   const selectMoney = CONSTANTS.CURRENCY_LIST.EURO;
 
@@ -46,6 +45,7 @@ export const Cart = () => {
                     selectMoney={selectMoney}
                     updateValue={updateValue}
                     clearItem={clearItem}
+                    navigateTo={navigateTo}
                   />
                 ))}
               </tbody>
@@ -65,7 +65,7 @@ export const Cart = () => {
             <div className="column">
               <button
                 className="btn btn-outline-secondary"
-                onClick={goToHomePage}
+                onClick={() => navigateTo("")}
               >
                 <i className="fas fa-home"></i>&nbsp;Back to Shopping
               </button>
@@ -91,4 +91,8 @@ export const Cart = () => {
       )}
     </>
   );
+};
+
+Cart.propTypes = {
+  navigateTo: PropTypes.func.isRequired,
 };

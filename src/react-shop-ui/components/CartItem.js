@@ -1,13 +1,13 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { CONSTANTS } from "./../constants";
 import { QuantitySelector } from "./QuantitySelector";
-import { navigateTo } from "../../helpers/navigate";
 export const CartItem = ({
   product,
   selectMoney,
   updateValue,
   clearItem,
+  navigateTo
 }) => {
   const [subtotal, setSubtotal] = useState(product.qty * product.price)
   return (
