@@ -5,7 +5,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.6",
     "@loadable/component": "^5.15.2",
-    "@mugan86/react-shop-ui": "^0.4.5",
+    "@mugan86/react-shop-ui": "^0.5.0",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",

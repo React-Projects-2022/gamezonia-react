@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgamezonia_react=self.webpackChunkgamezonia_react||[]).push([[127],{3127:function(e,n,a){a.r(n);var r=a(184);n.default=function(){return(0,r.jsx)(r.Fragment,{children:(0,r.jsx)("p",{children:"Genres layout"})})}}}]);
+//# sourceMappingURL=127.fed01741.chunk.js.map

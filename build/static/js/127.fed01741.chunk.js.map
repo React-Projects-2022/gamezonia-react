@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/127.fed01741.chunk.js","mappings":"2IAMA,UANe,kBACX,+BACI","sources":["pages/private/pages/Genres.js"],"sourcesContent":["const Genres = () => (\n    <>\n        <p>Genres layout</p>\n    </>\n);\n\nexport default Genres;"],"names":[],"sourceRoot":""}

@@ -10,9 +10,10 @@ import Loading from "../../components/core/Loading";
 
 import "./../../styles/public/details.css";
 const Details = () => {
-  const { manageProduct, getProductInfo } = useCart();
+  const { manageProduct } = useCart();
   const [idProduct, setIdProduct] = useState(useParams().id);
   const [principalImage, setPrincipalImage] = useState("");
+  const [quantity, setQuantity] = useState( 1 );
 
   const [getDetails, { data: dataDetails, loading }] =
     useLazyQuery(DETAILS_PAGE);
@@ -38,11 +39,8 @@ const Details = () => {
       }
     }
   `);
-  const dataFromCart = getProductInfo(idProduct);
-  console.log(dataFromCart.hasOwnProperty("qty"));
-  const [quantity, setQuantity] = useState(
-    dataFromCart.hasOwnProperty("qty") ? 3 : 1
-  );
+  // const dataFromCart = getProductInfo(idProduct);
+  
 
   const updateValue = (qty) => setQuantity(qty);
 

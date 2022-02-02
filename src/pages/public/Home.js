@@ -3,7 +3,6 @@ import Loading from "../../components/core/Loading";
 import { HOME_PAGE } from "../../graphql/operations/query/home-page";
 import { navigateTo } from "../../helpers/navigate";
 import { useEffect, useState } from "react";
-
 import { CONSTANTS, Carousel, ProductItemGroup, useCart} from "@mugan86/react-shop-ui";
 // import { useCart } from "../../react-shop-ui/hooks/useCart";
 const Home = () => {
@@ -21,7 +20,7 @@ const Home = () => {
           id: item.id,
           title: item.product.name,
           description: item.platform.name,
-          url: window.location.origin.concat(`/games/details/${item.id}`),
+          url: `games/details/${item.id}`,
           background: item.product.img,
         })
       );
@@ -61,7 +60,7 @@ const Home = () => {
       {error && <p>Error: {error}</p>}
       {!loading && !error && (
         <>
-          {carousel.length > 2 && <Carousel carousel={carousel} />}
+          {carousel.length > 2 && <Carousel carousel={carousel} openInfoDetails={navigateTo} />}
           <div className="container mb-5">
             <ProductItemGroup
               title={"Juegos de PS4"}

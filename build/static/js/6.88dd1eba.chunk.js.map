@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/6.88dd1eba.chunk.js","mappings":"yIAMA,UANa,kBACT,+BACI","sources":["pages/private/pages/Tags.js"],"sourcesContent":["const Tags = () => (\n    <>\n        <p>Tags layout</p>\n    </>\n);\n\nexport default Tags;"],"names":[],"sourceRoot":""}

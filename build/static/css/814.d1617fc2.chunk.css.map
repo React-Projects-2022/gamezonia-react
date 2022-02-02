@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/814.d1617fc2.chunk.css","mappings":"AAAA,YAEE,aAAc,CADd,eAEF,CAEA,mBAEE,YAAa,CADb,cAEF","sources":["pages/public/forms/forms.css"],"sourcesContent":[".validation {\n  margin-top: 10px;\n  color: #bf1650;\n}\n\n.validation::before {\n  display: inline;\n  content: \"⚠ \";\n}\n"],"names":[],"sourceRoot":""}

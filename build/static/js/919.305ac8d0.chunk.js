@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgamezonia_react=self.webpackChunkgamezonia_react||[]).push([[919],{7919:function(n,e,a){a.r(e);var i=a(3504),r=a(184);e.default=function(){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)("h1",{children:"NotFound"}),(0,r.jsx)("p",{children:"NotFound layout"}),(0,r.jsx)(i.OL,{to:"/",children:"Volver a la p\xe1gina inicial"})]})}}}]);
+//# sourceMappingURL=919.305ac8d0.chunk.js.map
